@@ -1,11 +1,16 @@
 #include <iostream>
-#include "def.h"
+
+namespace Hybrid
+{
+	void HybFunc(void)
+	{
+		std::cout << "So simple." << std::endl;
+	}
+}
 
 int main(void)
 {
-	BestCom::simpleFunc();
-	ProgCom::simpleFunc();
+	using Hybrid::HybFunc;
+	HybFunc();
 	return 0;
 }
-
-
