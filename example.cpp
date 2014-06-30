@@ -8,24 +8,45 @@
 
 #include <iostream>
 
+void swap(int *n1, int *n2)
+{
+	int t;
+	t = *n1;
+	*n1 = *n2;
+	*n2 = t;
+}
+
+void swap(char *c1, char *c2)
+{
+	char t;
+
+	t = *c1;
+	*c1 = *c2;
+	*c2 = t;
+}
+
+void swap(double *d1, double *d2)
+{
+	double t;
+
+	t = *d1;
+	*d1 = *d2;
+	*d2 = t;
+}
+
 int main(void)
 {
-	int val1, val2;
-	int result = 0;
+	int num1 = 20, num2 = 30;
+	swap(&num1, &num2);
+	std::cout << num1 << ' ' << num2 << std::endl;
 
-	std::cout << "정수 두개 입력: ";
-	std::cin >> val1 >> val2;
+	char ch1 = 'A', ch2 = 'B';
+	swap(&ch1, &ch2);
+	std::cout << ch1 << ' ' << ch2 << std::endl;
 
-	if(val1 < val2)
-	{
-		for(int i = val1+1; i < val2 ; i++)
-		{
-			result += i;
-		}
-
-		std::cout << "정수 두개 사이 값들의 합은: ";
-		std::cout << result;
-	}
+	double dbl1 = 1.111, dbl2 = 5.555;
+	swap(&dbl1, &dbl2);
+	std::cout << dbl1 << ' ' << dbl2 << std::endl;
 
 	return 0;
 }
