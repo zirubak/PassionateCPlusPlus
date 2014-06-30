@@ -1,16 +1,12 @@
 #include <iostream>
 
-namespace Hybrid
-{
-	void HybFunc(void)
-	{
-		std::cout << "So simple." << std::endl;
-	}
-}
+using std::cout;
+using std::endl;
+using std::cin;
 
 int main(void)
 {
-	using Hybrid::HybFunc;
-	HybFunc();
+	int num = 10;
+	cout << num;
 	return 0;
 }
