@@ -10,16 +10,22 @@
 
 int main(void)
 {
-	int val1;
-	std::cout << "첫 번째 숫자 입력: ";
-	std::cin >> val1;
+	int val1, val2;
+	int result = 0;
 
-	int val2;
-	std::cout << "두 번째 숫자 입력: ";
-	std::cin >> val2;
+	std::cout << "정수 두개 입력: ";
+	std::cin >> val1 >> val2;
 
-	int result = val1 + val2;
-	std::cout << "덧샘 결과: " << result << std::endl;
+	if(val1 < val2)
+	{
+		for(int i = val1+1; i < val2 ; i++)
+		{
+			result += i;
+		}
+
+		std::cout << "정수 두개 사이 값들의 합은: ";
+		std::cout << result;
+	}
 
 	return 0;
 }
