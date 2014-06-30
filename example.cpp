@@ -6,6 +6,12 @@ namespace BestCom
 
 }
 
+namespace BestCom
+{
+	void goodFunc(void);
+
+}
+
 namespace ProgCom
 {
 	void simpleFunc(void);
@@ -22,6 +28,12 @@ int main(void)
 void BestCom::simpleFunc(void)
 {
 	std::cout << "BestCom이 정의한 함수" << std::endl;
+	goodFunc();
+}
+
+void BestCom::goodFunc(void)
+{
+	std::cout << "good 함수" << std::endl;
 }
 
 void ProgCom::simpleFunc(void)
