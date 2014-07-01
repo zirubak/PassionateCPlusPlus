@@ -1,22 +1,25 @@
-//포인터 변수도 변수이기 때문에 참조자의 선언이 가능하다.
+//call-by-reference using reference
 
 #include <iostream>
 
 using namespace std;
 
+void SwapByRef2(int &ref1, int &ref2)
+{
+	int temp = ref1;
+	ref1 = ref2;
+	ref2 = temp;
+}
+
 int main(void)
 {
-	int num = 12;
-	int *ptr = &num;
-	int **dptr = &ptr;
+	int val1 = 10;
+	int val2 = 20;
 
-	int &ref = num;
-	int *(&pref) = ptr;
-	int **(&dpref) = dptr;
+	SwapByRef2(val1, val2);
 
-	cout << ref << endl;
-	cout << *pref << endl;
-	cout << **dpref << endl;
+	cout << "val1: " << val1 << endl;
+	cout << "val2: " << val2 << endl;
 
 	return 0;
 }
