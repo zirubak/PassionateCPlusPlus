@@ -1,28 +1,24 @@
-//Question 02-2
-//page 90
+//길이 정보를 인자로 받아서 해당 길이의 문장열 저장이 가능한 배엵을 생성하고
+//그 배열의 주소값을 반환하는 함수를 정의한다.
 
 #include <iostream>
+#include <string.h>
+#include <stdlib.h>
+
 using namespace std;
+
+char* MakeStrAdr(int len)
+{
+	char* str = (char*)malloc(sizeof(char) * len);
+	return str;
+}
 
 int main(void)
 {
-	const int num = 12;
-
-	//포인터를 선언해서 위 변수를 가리키게 해 보자.
-//	int *ptr;
-//	ptr = &num;  //이걸 어떻게 하는지 모르겠네요~~~
-	const int *ptr = &num;
-
-	//그리고 이 포인터 변수를 참조하는 참조자를 선언하자
-//	int *(&pref) = ptr; // 이것도 틀렸네...... 상수화된 변수의 참조자 선언은 다음과 같아야 함.
-	const int *(&pref) = ptr;
-
-
-	//마지막으로 이렇게 선언된 포인터 변수와 참조자를 이용해서
-	//num값을 출력하는 예제.
-	cout << "from pointer: " << *ptr << endl;
-	cout << "from reference: " << *pref << endl;
+	char* str = MakeStrAdr(20);
+	strcpy(str, "I am so happy~");
+	cout << str << endl;
+	free(str);
 
 	return 0;
 }
-
