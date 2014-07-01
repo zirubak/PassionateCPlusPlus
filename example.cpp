@@ -1,11 +1,13 @@
-//reference return example 2
+//reference return example 3
 
 #include <iostream>
 using namespace std;
 
-int& RefRetFuncOne(int &ref)
+int RefRetFuncOne(int &ref)
 {
 	ref++;
+//참조자를 반환하지만 반환형이 기본자료형 int이기 때문에 참조자가
+//참조하는 변수의 값이 반환된다.
 	return ref;
 }
 
