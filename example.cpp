@@ -1,26 +1,28 @@
-//reference return example 3
+//Question 02-2
+//page 90
 
 #include <iostream>
 using namespace std;
 
-int RefRetFuncOne(int &ref)
-{
-	ref++;
-//참조자를 반환하지만 반환형이 기본자료형 int이기 때문에 참조자가
-//참조하는 변수의 값이 반환된다.
-	return ref;
-}
-
 int main(void)
 {
-	int num1 = 1;
-	int num2 = RefRetFuncOne(num1);
+	const int num = 12;
 
-	num1 += 1;
-	num2 += 100;
+	//포인터를 선언해서 위 변수를 가리키게 해 보자.
+//	int *ptr;
+//	ptr = &num;  //이걸 어떻게 하는지 모르겠네요~~~
+	const int *ptr = &num;
 
-	cout << "num1: " << num1 << endl;
-	cout << "num2: " << num2 << endl;
+	//그리고 이 포인터 변수를 참조하는 참조자를 선언하자
+//	int *(&pref) = ptr; // 이것도 틀렸네...... 상수화된 변수의 참조자 선언은 다음과 같아야 함.
+	const int *(&pref) = ptr;
+
+
+	//마지막으로 이렇게 선언된 포인터 변수와 참조자를 이용해서
+	//num값을 출력하는 예제.
+	cout << "from pointer: " << *ptr << endl;
+	cout << "from reference: " << *pref << endl;
 
 	return 0;
 }
+
