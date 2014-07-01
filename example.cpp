@@ -4,26 +4,22 @@ using namespace std;
 
 int main(void)
 {
-	int num = 10;
-	int i = 0;
+	int num1 = 1020;
+	int &num2 = num1;
 
-	cout << "true: " << true << endl;
-	cout << "false: " << false << endl;
+	num2 = 3047;
+	cout << "VAL: " << num1 << endl;
+	cout << "REF: " << num2 << endl;
 
-	while(true)
-	{
-		cout << i++ << ' ';
-		if(i > num)
-		{
-			break;
-		}
-	}
-	cout << endl;
-
-	cout << "size of 1:" << sizeof(1) << endl;
-	cout << "size of 0:" << sizeof(0) << endl;
-	cout << "size of true:" << sizeof(true) << endl;
-	cout << "size of false:" << sizeof(false) << endl;
+	cout << "VAL: " << &num1 << endl;
+	cout << "REF: " << &num2 << endl;
 
 	return 0;
+
 }
+
+//## result
+//VAL: 3047
+//REF: 3047
+//VAL: 0x7fff0eb7e6c4
+//REF: 0x7fff0eb7e6c4	num1과 num2의 주소값이 동일하다 이 결과에 주목해야 한다.
