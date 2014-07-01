@@ -1,25 +1,33 @@
-//call-by-reference using reference
+// problem 02-1
+// problem 3
 
 #include <iostream>
 
 using namespace std;
 
-void SwapByRef2(int &ref1, int &ref2)
+void SwapByRef2(int *(&ref1), int *(&ref2))
 {
-	int temp = ref1;
+	int *temp = ref1;
 	ref1 = ref2;
 	ref2 = temp;
 }
 
 int main(void)
 {
-	int val1 = 10;
-	int val2 = 20;
+	int num1 = 5;
+	int *ptr1 = &num1;
+	int num2 = 10;
+	int *ptr2 = &num2;
 
-	SwapByRef2(val1, val2);
+	cout << "Before:" << endl;
+	cout << "val1: " << *ptr1 << endl;
+	cout << "val2: " << *ptr2 << endl;
 
-	cout << "val1: " << val1 << endl;
-	cout << "val2: " << val2 << endl;
+	SwapByRef2(ptr1, ptr2);
+
+	cout << "After:" << endl;
+	cout << "val1: " << *ptr1 << endl;
+	cout << "val2: " << *ptr2 << endl;
 
 	return 0;
 }
