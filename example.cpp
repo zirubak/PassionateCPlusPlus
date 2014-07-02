@@ -1,47 +1,88 @@
-//Question 02-3
-//page 95
-
 #include <iostream>
 
 using namespace std;
 
-typedef struct _Point{
-	int xpos;
-	int ypos;
-} Point;
+#define ID_LEN 20
+#define MAX_SPD 200
+#define FUEL_STEP 2
+#define ACC_STEP 10
+#define BRK_STEP 10
 
-//위의 구조체를 기반으로 두 점의 합을 계산하는 함수를 다음의 형태로 정의하고
-//덧샘의 결과는 함수의 반환을 통해서 얻게 한다.
-
-Point& PntAdder(const Point &p1, const Point &p2)
+struct Car
 {
-	Point *rtn = new Point;
+	char gamerID[ID_LEN];
+	int fuelGauge;
+	int curSpeed;
+};
 
-	rtn->xpos = p1.xpos + p2.xpos;
-	rtn->ypos = p1.ypos + p2.ypos;
+void ShowCarState(const Car &car)
+{
+	cout << "소유자ID: " << car.gamerID << endl;
+	cout << "연료량: " << car.fuelGauge << "%" << endl;
+	cout << "현재속도: " << car.curSpeed << "km/s" << endl << endl;
+}
 
-	return *rtn;
+void Accel(Car &car)
+{
+	if(car.fuelGauge <= 0)
+		return;
+	else
+		car.fuelGauge -= FUEL_STEP;
+
+	if(car.curSpeed + ACC_STEP >= MAX_SPD)
+	{
+		car.curSpeed = MAX_SPD;
+		return;
+	}
+
+	car.curSpeed += ACC_STEP;
+}
+
+void Break(Car &car)
+{
+	if(car.curSpeed < BRK_STEP)
+	{
+		car.curSpeed = 0;
+		return;
+	}
+
+	car.curSpeed -= BRK_STEP;
 }
 
 int main(void)
 {
-//	Point *rtn = new Point;
-	Point *ptr1 = new Point;
-	Point *ptr2 = new Point;
+	Car run99 = {"run99", 100, 0};
+	Accel(run99);
+	Accel(run99);
+	ShowCarState(run99);
+	Break(run99);
+	ShowCarState(run99);
 
-	ptr1->xpos = 3;
-	ptr1->ypos = 30;
-
-	ptr2->xpos = 70;
-	ptr2->ypos = 7;
-
-	Point &rtn = PntAdder(*ptr1, *ptr2);
-
-	cout << "[" << rtn.xpos << "," << rtn.ypos << "]" << endl;
-
-	delete ptr1;
-	delete ptr2;
-	delete &rtn;	//이건 좀더 생각해 보자.. 왜 이렇게 해야 하는지.
+	Car sped77 = {"sped77", 100, 0};
+	Accel(sped77);
+	Break(sped77);
+	ShowCarState(sped77);
 
 	return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
