@@ -1,39 +1,76 @@
 #include <iostream>
+
 using namespace std;
 
-struct Point
+namespace CA_CONST
 {
-	int xpos;
-	int ypos;
-
-	void Move(int x, int y)
+	enum
 	{
-		xpos += x;
-		ypos += y;
+		ID_LEN = 20,
+		MAX_SPD = 200,
+		FUEL_STEP = 2,
+		ACC_STEP = 10,
+		BRK_STEP = 10
+	};
+}
+
+struct Car
+{
+	char gamerID[CA_CONST::ID_LEN];
+	int fuelGauge;
+	int curSpeed;
+
+	void ShowCarState()
+	{
+		cout << "소유자ID: " << gamerID << endl;
+		cout << "연료량: " << fuelGauge << "%" << endl;
+		cout << "현재속도: " << curSpeed << "km/s" << endl << endl;
 	}
 
-	void AddPoint(const Point &pos)
+	void Accel()
 	{
-		xpos += pos.xpos;
-		ypos += pos.ypos;
+		if(fuelGauge <= 0)
+			return;
+		else
+			fuelGauge -= CA_CONST::FUEL_STEP;
+
+		if(curSpeed + CA_CONST::ACC_STEP >= CA_CONST::MAX_SPD)
+		{
+			curSpeed = CA_CONST::MAX_SPD;
+			return;
+		}
+
+		curSpeed += CA_CONST::ACC_STEP;
 	}
 
-	void ShowPosition(void)
+	void Break()
 	{
-		cout << "[" << xpos << "],[" << ypos << "]" << endl;
+		if(curSpeed < CA_CONST::BRK_STEP)
+		{
+			curSpeed = 0;
+			return;
+		}
+
+		curSpeed -= CA_CONST::BRK_STEP;
 	}
 };
 
+
 int main(void)
 {
-	Point pos1 = {12,4};
-	Point pos2 = {20,30};
+	Car run99 = {"run99", 100, 0};
+	run99.Accel();
+	run99.Accel();
+	run99.ShowCarState();
+	run99.Break();
+	run99.ShowCarState();
 
-	pos1.Move(-7, 10);
-	pos1.ShowPosition();
-
-	pos1.AddPoint(pos2);
-	pos1.ShowPosition();
+	Car sped77 = {"sped77", 100, 0};
+	sped77.Accel();
+	sped77.Break();
+	sped77.ShowCarState();
 
 	return 0;
 }
+
+
