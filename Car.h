@@ -13,6 +13,9 @@
 #ifndef CAR_H_
 #define CAR_H_
 
+#include <iostream>
+using namespace std;
+
 namespace CA_CONST
 {
 	enum
@@ -39,6 +42,22 @@ public:
 	void Break();
 };
 
+inline void Car::ShowCarState()
+{
+	cout << "소유자ID: " << gamerID << endl;
+	cout << "연료량: " << fuelGauge << "%" << endl;
+	cout << "현재속도: " << curSpeed << "km/s" << endl << endl;
+}
 
+inline void Car::Break()
+{
+	if(curSpeed < CA_CONST::BRK_STEP)
+	{
+		curSpeed = 0;
+		return;
+	}
+
+	curSpeed -= CA_CONST::BRK_STEP;
+}
 
 #endif /* CAR_H_ */

@@ -21,12 +21,7 @@ void Car::InitMembers(char *ID, int fuel)
 	fuelGauge = fuel;
 }
 
-void Car::ShowCarState()
-{
-	cout << "소유자ID: " << gamerID << endl;
-	cout << "연료량: " << fuelGauge << "%" << endl;
-	cout << "현재속도: " << curSpeed << "km/s" << endl << endl;
-}
+
 
 void Car::Accel()
 {
@@ -44,14 +39,5 @@ void Car::Accel()
 	curSpeed += CA_CONST::ACC_STEP;
 }
 
-void Car::Break()
-{
-	if(curSpeed < CA_CONST::BRK_STEP)
-	{
-		curSpeed = 0;
-		return;
-	}
 
-	curSpeed -= CA_CONST::BRK_STEP;
-}
 
