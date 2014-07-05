@@ -16,6 +16,7 @@ private: // x, y라는 정보를 은닉한 상태
 
 public:
 	bool InitMembers(int xpos, int ypos);
+	//const function
 	int Getx() const;
 	int Gety() const;
 	bool SetX(int xpos);

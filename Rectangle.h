@@ -18,6 +18,7 @@ private:
 
 public:
 	bool InitMembers(const Point &ul, const Point &lr);
+	//const function
 	void ShowRecInfo() const;
 };
 
