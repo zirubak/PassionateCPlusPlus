@@ -16,29 +16,11 @@ private:
 	int num2;
 
 public:
-	SimpleClass()
-	{
-		num1 = 0;
-		num2 = 0;
-	}
-
-	SimpleClass(int n)
-	{
-		num1 = n;
-		num2 = 0;
-	}
-
-	SimpleClass(int n1, int n2)
+	SimpleClass(int n1 = 0, int n2 = 0)
 	{
 		num1 = n1;
 		num2 = n2;
 	}
-
-//	SimpleClass(int n1=0, int n2=0)
-//	{
-//		num1 = n1;
-//		num2 = n2;
-//	}
 
 	void ShowDate() const
 	{
@@ -48,14 +30,15 @@ public:
 
 int main(void)
 {
-	SimpleClass sc1;
-	sc1.ShowDate();
-
-	SimpleClass sc2(100);
-	sc2.ShowDate();
-
-	SimpleClass sc3(100, 200);
-	sc3.ShowDate();
+	SimpleClass sc1();	//함수의 원형 선언!
+	SimpleClass mysc = sc1();
+	mysc.ShowDate();
 	return 0;
+}
+
+SimpleClass sc1()
+{
+	SimpleClass sc(20,30);
+	return sc;
 }
 
