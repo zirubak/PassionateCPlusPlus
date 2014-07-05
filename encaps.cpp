@@ -38,21 +38,28 @@ public:
 	}
 };
 
+//this class is created for encapsulation.
+class CONTAC600
+{
+private:
+	SinivelCap scap;
+	SneezeCap zcap;
+	SnuffleCap ncap;
+
+public:
+	void Take() const
+	{
+		scap.Take();
+		zcap.Take();
+		ncap.Take();
+	}
+};
+
 
 class ColdPatient
 {
 public:
-	void TakeSinivelCap(const SinivelCap &cap)
-	{
-		cap.Take();
-	}
-
-	void TakeSneezeCap(const SneezeCap &cap)
-	{
-		cap.Take();
-	}
-
-	void takeSnuffleCap(const SnuffleCap &cap)
+	void TakeCONTACT600(const CONTAC600 &cap)
 	{
 		cap.Take();
 	}
@@ -60,14 +67,11 @@ public:
 
 int main(void)
 {
-	SinivelCap scap;
-	SneezeCap zcap;
-	SnuffleCap ncap;
 
+	CONTAC600 cap;
 	ColdPatient sufferer;
-	sufferer.TakeSinivelCap(scap);
-	sufferer.TakeSneezeCap(zcap);
-	sufferer.takeSnuffleCap(ncap);
+
+	sufferer.TakeCONTACT600(cap);
 
 	return 0;
 }
