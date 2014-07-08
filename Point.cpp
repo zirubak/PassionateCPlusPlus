@@ -10,17 +10,23 @@
 
 using namespace std;
 
-bool Point::InitMembers(int xpos, int ypos)
-{
-	if(xpos < 0 || ypos < 0)
-	{
-		cout << "input error!!!" << endl;
-		return false;
-	}
+//bool Point::InitMembers(int xpos, int ypos)
+//{
+//	if(xpos < 0 || ypos < 0)
+//	{
+//		cout << "input error!!!" << endl;
+//		return false;
+//	}
+//
+//	x = xpos;
+//	y = ypos;
+//	return true;
+//}
 
+Point::Point(const int &xpos, const int &ypos)
+{
 	x = xpos;
 	y = ypos;
-	return true;
 }
 
 int Point::Getx() const // const function

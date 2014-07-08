@@ -15,7 +15,8 @@ private: // x, y라는 정보를 은닉한 상태
 	int y;
 
 public:
-	bool InitMembers(int xpos, int ypos);
+//	bool InitMembers(int xpos, int ypos);
+	Point(const int &xpos, const int &ypos);
 	int Getx() const;
 	int Gety() const;
 	bool SetX(int xpos);
