@@ -11,16 +11,17 @@ using namespace std;
 class FruitSeller
 {
 private:
-	int APPLE_PRICE;
+	const int APPLE_PRICE;
 	int numOfApples;
 	int myMoney;
 
 public:
 	FruitSeller(int price, int num, int money)
+		:APPLE_PRICE(price), numOfApples(num), myMoney(money)
 	{
-		APPLE_PRICE = price;
-		numOfApples = num;
-		myMoney = money;
+//		APPLE_PRICE = price;
+//		numOfApples = num;
+//		myMoney = money;
 	}
 	int SaleApples(int money)
 	{
@@ -43,9 +44,10 @@ class FruitBuyer
 
 public:
 	FruitBuyer(int money)
+		:myMoney(money), numOfApples(0)
 	{
-		myMoney = money;
-		numOfApples = 0;
+//		myMoney = money;
+//		numOfApples = 0;
 	}
 	void BuyApples(FruitSeller &seller, int money)
 	{
