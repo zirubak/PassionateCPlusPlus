@@ -19,16 +19,22 @@ public:
 
 	void ShowData() const
 	{
-		cout << "num: " << num << endl;
+		cout << "ShowData() const: " << num << endl;
+	}
+
+	void ShowData()
+	{
+		cout << "ShowData() : " << num << endl;
 	}
 };
 
 int main(void)
 {
 	const SoSimple obj(7);
-	//맴버 함수 AddNum은 const함수가 아니기 때문에 호출이 불가능하다.
-//	obj.AddNum(3);
 	obj.ShowData();
+
+	SoSimple obj2(10);
+	obj2.ShowData();
 
 	return 0;
 }
