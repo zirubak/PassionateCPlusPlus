@@ -1,7 +1,6 @@
-//Banking System ver 0.2
+//Banking System ver 0.3
 
-//어떻게 캡슐활를 시키고 정보를 은닉 시켜야 할까?
-//생성자와 소멸자는 어떻게 정의해야 할까?
+//이번에는 우리가 정의한 Accoun class에 깊은 복사를 진행하는 복사 생성자를 정의해 보겠다
 
 #include <iostream>
 #include <cstring>
@@ -23,16 +22,11 @@ enum{
 	EXIT
 };
 
-//typedef struct{
-//	int accID;	//계좌번호
-//	int balance;	//잔액
-//	char cusName[NAME_LEN];	//고객이름
-//}Account;
-
 class Account{
 private:
 	int accID;	//계좌번호
 	int balance;	//잔액
+	//아래의 char point때문에 deep copy constructor 가 필요함.
 	char* cusName;	//고객이름
 
 public:
@@ -41,6 +35,13 @@ public:
 	{
 		cusName = new char[strlen(name)+1];
 		strcpy(cusName, name);
+	}
+
+	//deep copy constructor
+	Account(const Account& obj) : accID(obj.accID), balance(obj.balance)
+	{
+		cusName = new char[strlen(obj.cusName)+1];
+		strcpy(cusName, obj.cusName);
 	}
 
 	~Account()
@@ -75,7 +76,6 @@ public:
 	}
 };
 
-//Account accArr[100];	//Account 저장을 위한 배열
 Account* accArr[100];	//Account 저장을 위한 배열
 int accNum = 0;	//저장된 Account 수
 
@@ -144,12 +144,6 @@ void MakeAccount(void)	//계좌개설을 위한 함수
 	cin >> balance;
 	cout << endl;
 
-//	accArr[accNum].accID = id;
-//	accArr[accNum].balance = balance;
-//	strcpy(accArr[accNum].cusName, name);
-//
-//	accNum += 1;
-
 	accArr[accNum++] = new Account(id, balance, name);
 }
 
@@ -167,7 +161,6 @@ void DepositMoney(void)	//입금
 	{
 		if(accArr[i]->GetAccID() == id)
 		{
-//			accArr[i].balance += money;
 			accArr[i]->Deposit(money);
 			cout << "입금 완료. " << endl;
 			return;
@@ -197,7 +190,6 @@ void WithdrawMoney(void)	//출금
 				return;
 			}
 
-//			accArr[i].balance -= money;
 			cout << "출금 완료" << endl << endl;
 			return;
 		}
@@ -209,9 +201,6 @@ void ShowAllAccInfo(void)	//잔액 조회
 {
 	for(int i=0; i < accNum; i++)
 	{
-//		cout << "계좌 ID: " << accArr[i].accID << endl;
-//		cout << "이 름" << accArr[i].cusName << endl;
-//		cout << "잔 액" << accArr[i].balance << endl << endl;
 		accArr[i]->ShowAccInfo();
 		cout << endl;
 	}
