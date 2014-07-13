@@ -27,7 +27,7 @@ public:
 	//일반 생성자와 차이가 있기 때문에 붙은 것이다.
 	//즉, copy constructor 를 이해하기 위해서는 복사 생성자의 호출 시점을
 	//확실히 이해 해야 한다.
-	SoSimple(const SoSimple &copy)
+	explicit SoSimple(const SoSimple &copy)
 		:num1(copy.num1), num2(copy.num2)
 	{
 		cout << "Called SoSimple(SoSimple &copy)" << endl;
@@ -44,7 +44,10 @@ int main(void)
 {
 	SoSimple sim1(15,30);
 	cout << "생성 및 초기화 직전" << endl;
-	SoSimple sim2 = sim1;	//SoSimple sim2(sim1)으로 자동적으로 변환
+//	SoSimple sim2 = sim1;	//SoSimple sim2(sim1)으로 자동적으로 변환
+
+	//explicit keyword는 복사 생성자의 묵시적 호출을 허용하지 않고 싶을때 사용하는 키워드
+	SoSimple sim2(sim1);
 	cout << "생성 및 초기화 직후" << endl;
 	sim2.ShowSimpleData();
 
