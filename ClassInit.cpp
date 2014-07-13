@@ -28,6 +28,14 @@ public:
 		age = myage;
 	}
 
+	//deep copy construtor
+	Person(const Person& copy) : age(copy.age)
+	{
+		int len = strlen(copy.name) + 1;
+		name = new char[len];
+		strcpy(name, copy.name);
+	}
+
 	void ShowPersonInfo() const
 	{
 		cout << "Name: " << name << endl;
