@@ -31,22 +31,31 @@ public:
 		cout << "called SoSimple(const SoSimple& copy)" << endl;
 	}
 
+	SoSimple& AddNum(int n)
+	{
+		num += n;
+		return *this;
+	}
+
 	void ShowData()
 	{
 		cout << "num: " << num << endl;
 	}
 };
 
-void SoSimpleFunObj(SoSimple ob)
+SoSimple SoSimpleFunObj(SoSimple ob)
 {
-	ob.ShowData();
+	cout << "return 이전" << endl;
+
+	//객체를 반환하게 되면 "임시 객체"라는 것이 생성된다.
+	//이 객체의 복사 생성자가 호출되면서 return문이 명시된 객체가 인자로 전달된다.
+	//즉, 최종적으로 반환되는 객체는 새롭게 생성되는 임시 객체이다.
+	return ob;
 }
 
 int main(void)
 {
 	SoSimple obj(7);
-	cout << "함수 호출 전" << endl;
-	SoSimpleFunObj(obj);
-	cout << "함수 호출 후" << endl;
+	SoSimpleFunObj(obj).AddNum(30).ShowData();
 	return 0;
 }
