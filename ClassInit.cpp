@@ -1,55 +1,51 @@
 /*
- * ClassInit.cpp
+ * ShallowCopyError.cpp
  *
- *  Created on: Jul 12, 2014
+ *  Created on: Jul 13, 2014
  *      Author: jh
  */
 
+//디폴트 복사 생성자는 맴버 대 맴버의 복사를 진행한다. 그리고 이러한 방식의 복사를 가르켜 "얕은 복사"
+//Shallow copy 라 하는데, 이는 맴버 변수가 힙의 메모리 공간을 참조하는 경우에 문제가 된다.
+
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
-class SoSimple
+class Person
 {
 private:
-	int num1;
-	int num2;
+	char* name;
+	int age;
 
 public:
-	SoSimple(int n1, int n2)
-		:num1(n1), num2(n2)
+	Person(char* myname, int myage)
 	{
-
+		int len = strlen(myname) + 1;
+		name = new char[len];
+		strcpy(name, myname);
+		age = myage;
 	}
 
-	//이러한 생성자를 가르켜 복자 생성자(copy constructor)라 부른다.
-	//copy constructor는 일반 constructor가 호출되는 시점이 다른
-	//일반 생성자와 차이가 있기 때문에 붙은 것이다.
-	//즉, copy constructor 를 이해하기 위해서는 복사 생성자의 호출 시점을
-	//확실히 이해 해야 한다.
-	explicit SoSimple(const SoSimple &copy)
-		:num1(copy.num1), num2(copy.num2)
+	void ShowPersonInfo() const
 	{
-		cout << "Called SoSimple(SoSimple &copy)" << endl;
+		cout << "Name: " << name << endl;
+		cout << "Age: " << age << endl;
 	}
 
-	void ShowSimpleData()
+	~Person()
 	{
-		cout << num1 << endl;
-		cout << num2 << endl;
+		delete []name;
+		cout << "called destructor! " << endl;
 	}
 };
 
 int main(void)
 {
-	SoSimple sim1(15,30);
-	cout << "생성 및 초기화 직전" << endl;
-//	SoSimple sim2 = sim1;	//SoSimple sim2(sim1)으로 자동적으로 변환
+	Person man1("JH Baek", 38);
+	Person man2 = man1;
+	man1.ShowPersonInfo();
+	man2.ShowPersonInfo();
 
-	//explicit keyword는 복사 생성자의 묵시적 호출을 허용하지 않고 싶을때 사용하는 키워드
-	SoSimple sim2(sim1);
-	cout << "생성 및 초기화 직후" << endl;
-	sim2.ShowSimpleData();
-
-	return 0;
 }
