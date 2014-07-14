@@ -1,6 +1,6 @@
-//Banking System ver 0.3
+//Banking System ver 0.4
 
-//이번에는 우리가 정의한 Accoun class에 깊은 복사를 진행하는 복사 생성자를 정의해 보겠다
+//const선언을 추가해서 코드의 안정성을 높여 보자
 
 #include <iostream>
 #include <cstring>
@@ -49,7 +49,7 @@ public:
 		delete []cusName;
 	}
 
-	int GetAccID()
+	int GetAccID() const
 	{
 		return accID;
 	}
@@ -68,7 +68,7 @@ public:
 		return money;
 	}
 
-	void ShowAccInfo()
+	void ShowAccInfo() const
 	{
 		cout << "계좌 ID: " << accID << endl;
 		cout << "이 름" << cusName << endl;
